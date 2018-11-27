@@ -1,0 +1,74 @@
+/* 头部 */
+.header{
+  display: flex;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 28rpx;
+  padding: 0 24rpx;
+  border-bottom: 1rpx solid #d8d8d8;
+}
+
+.header .locate{
+  width: 110rpx;
+  color: #666;
+  position: relative;
+  text-align: center;
+}
+/* 添加伪元素 */
+.header .locate::after{
+  content: "";
+  display: block;
+
+  width: 0;
+  height: 0;
+  border-width: 10rpx;
+  border-style: solid;
+  border-color: #cacaca transparent transparent transparent;
+
+  position: absolute;
+  right: 0;
+  top: 48%;
+}
+
+/* flex:1; 占据剩下的空间 */
+/* display、justify-content 剩余空间平等分布 */
+.header .tabs{
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 120rpx;
+  color: #333;
+  font-weight: 600;
+}
+.header .tabs text{
+  display: block;
+  position: relative; 
+  padding: 0 16rpx;
+}
+
+.header .tabs .active{
+  color: #dd5137;
+}
+/* 使用伪元素给文字加上下划线 */
+.header .tabs .active::after{
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1rpx;
+  background-color: #dd5137;
+
+  position: absolute;
+  bottom: 1rpx;
+  left: 0;
+}
+
+
+
+.header .search{
+  width: 74rpx;
+  border-left: 1rpx solid #d8d8d8;
+  background-image: url('https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/search.png');
+  background-position: right center;
+  background-size: 48rpx 48rpx;
+  background-repeat: no-repeat;
+}

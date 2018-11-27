@@ -1,0 +1,14 @@
+<!-- 头部header -->
+<view class='header'>
+  <!-- 位置 -->
+  <navigator url='' class='locate'>广州</navigator>
+  <!-- tab切换 -->
+  <view class='tabs'>
+    <text class='active'>热映</text>
+    <text>待映</text>
+  </view>
+  <!-- 搜索 -->
+  <navigator class='search' url=''></navigator>
+</view>
+
+<!-- 电影列表 -->
