@@ -2,6 +2,7 @@
 <view class='header'>
   <!-- 位置 -->
   <navigator url='' class='locate'>广州</navigator>
+
   <!-- tab切换 -->
   <view class='tabs'>
     <text class='active'>热映</text>
@@ -12,3 +13,20 @@
 </view>
 
 <!-- 电影列表 -->
+<view class='items'>
+    <view class='item'>
+      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-1.jpg"/>
+      <view class='info'>
+        <!-- 信息 -->
+        <view class='meta'>
+          <text class='name'>龙神打仗</text>
+          <text class='type'>小说，武侠，剧情</text>
+          <text class='author'>导演：胡歌，李尚龙</text>
+          <text class='count'>今日谈1239家剧院播放了2312次</text>
+        </view>
+      
+        <!-- 其他 -->
+        <view class='extra'></view>
+      </view>
+    </view>
+</view>

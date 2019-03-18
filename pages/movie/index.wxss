@@ -57,12 +57,11 @@
   height: 1rpx;
   background-color: #dd5137;
 
+  /* 给下划线绝对定位 */
   position: absolute;
   bottom: 1rpx;
   left: 0;
 }
-
-
 
 .header .search{
   width: 74rpx;
@@ -71,4 +70,39 @@
   background-position: right center;
   background-size: 48rpx 48rpx;
   background-repeat: no-repeat;
+}
+ 
+/* 电影列表样式布局 */
+.items .item{
+  padding: 24rpx 0 24rpx 24rpx;
+}
+
+.items image{
+  width: 128rpx;
+  height: 180rpx;
+
+  float: left;
+}
+
+/* padding-left 和 margin-left 的差距 */
+.items .info{
+  height: 208rpx;
+  padding-left: 152rpx;
+  border-bottom: 1rpx solid #dcdcdc;
+}
+
+.items .info .meta text{
+  display: block;
+  line-height: 1.7;  /* 行距 */
+  font-size: 26rpx;
+  color: #666;
+}
+
+.items .info .meta .name{
+  font-size: 32rpx;
+  color: #222;
+}
+
+.items .info .meta .count{
+  color: #999;
 }
