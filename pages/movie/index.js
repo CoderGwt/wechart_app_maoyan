@@ -1,6 +1,6 @@
 Page({
   data: {
-    tabIndex: 'hots',
+    tabIndex: 'coming',
   },
   
   switch: function(ev){
@@ -14,6 +14,10 @@ Page({
     this.setData({
       tabIndex: tabIndex
     })
+  },
+
+  onPullDownRefresh: function(){
+    console.log("下拉...")
   }
 
 })
