@@ -111,6 +111,7 @@
     </view>
 </view>
 
+<view class='wrap' hidden='{{ tabIndex == "hots" }}'>
 <!-- 近期最受关注 -->
 <text class='title'>近期最受欢迎</text>
 <!-- 如果组件的属性为 布尔类型，需要使用 {{ }}  -->
@@ -258,6 +259,6 @@
       </view>
     </view>
 </view>
-
+</view>
 <!-- 加载数据 -->
 <text class='loading'>加载数据...</text>
