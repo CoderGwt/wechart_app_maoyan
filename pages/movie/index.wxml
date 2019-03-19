@@ -5,15 +5,16 @@
 
   <!-- tab切换 -->
   <view class='tabs'>
-    <text class='active'>热映</text>
-    <text>待映</text>
+  <!-- 通过class控制下划线，三目运算 -->
+    <text class='{{tabIndex == "hots" ? "active" : ""}}' bindtap='switch' data-tab-index="hots">热映</text>
+    <text bindtap='switch' data-tab-index="coming" class='{{ tabIndex == "coming" ? "active" : ""}}'>待映</text>
   </view>
   <!-- 搜索 -->
   <navigator class='search' url=''></navigator>
 </view>
 
-<!-- 电影列表 -->
-<view class='items'>
+<!-- 电影列表 【热映】-->
+<view class='items' hidden='{{ tabIndex == "coming" }}'>
     <view class='item'>
       <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-1.jpg"/>
       <view class='info'>
@@ -26,7 +27,188 @@
         </view>
       
         <!-- 其他 -->
-        <view class='extra'></view>
+        <view class='extra'>
+          <text class='score'>9.8 <text class='label'>分</text></text>
+          <button class='btn'>购票</button>
+        </view>
+      </view>
+    </view>
+
+    <view class='item'>
+      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-12.jpg"/>
+      <view class='info'>
+        <!-- 信息 -->
+        <view class='meta'>
+          <text class='name'>龙神打仗</text>
+          <text class='type'>小说，武侠，剧情</text>
+          <text class='author'>导演：胡歌，李尚龙</text>
+          <text class='count'>今日谈1239家剧院播放了2312次</text>
+        </view>
+      
+        <!-- 其他 -->
+        <view class='extra'>
+          <text class='score'>9.8 <text class='label'>分</text></text>
+          <button class='btn'>购票</button>
+        </view>
+      </view>
+    </view>
+
+    <view class='item'>
+      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-5.jpg"/>
+      <view class='info'>
+        <!-- 信息 -->
+        <view class='meta'>
+          <text class='name'>龙神打仗</text>
+          <text class='type'>小说，武侠，剧情</text>
+          <text class='author'>导演：胡歌，李尚龙</text>
+          <text class='count'>今日谈1239家剧院播放了2312次</text>
+        </view>
+      
+        <!-- 其他 -->
+        <view class='extra'>
+          <text class='score'>91236777<text class='label'>人想看</text></text>
+          <button class='btn precell'>预售</button>
+        </view>
+      </view>
+    </view>
+
+    <view class='item'>
+      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-11.jpg"/>
+      <view class='info'>
+        <!-- 信息 -->
+        <view class='meta'>
+          <text class='name'>龙神打仗</text>
+          <text class='type'>小说，武侠，剧情</text>
+          <text class='author'>导演：胡歌，李尚龙</text>
+          <text class='count'>今日谈1239家剧院播放了2312次</text>
+        </view>
+      
+        <!-- 其他 -->
+        <view class='extra'>
+          <text class='score'>9.8 <text class='label'>分</text></text>
+          <button class='btn'>购票</button>
+        </view>
+      </view>
+    </view>
+
+    <view class='item'>
+      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-3.jpg"/>
+      <view class='info'>
+        <!-- 信息 -->
+        <view class='meta'>
+          <text class='name'>龙神打仗</text>
+          <text class='type'>小说，武侠，剧情</text>
+          <text class='author'>导演：胡歌，李尚龙</text>
+          <text class='count'>今日谈1239家剧院播放了2312次</text>
+        </view>
+      
+        <!-- 其他 -->
+        <view class='extra'>
+          <text class='score'>9.8 <text class='label'>分</text></text>
+          <button class='btn'>购票</button>
+        </view>
       </view>
     </view>
 </view>
+
+
+<!-- 电影列表 【待映】 -->
+<view class='items' hidden='{{ tabIndex == "hots" }}'>
+    <view class='item'>
+      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-1.jpg"/>
+      <view class='info'>
+        <!-- 信息 -->
+        <view class='meta'>
+          <text class='name'>刺</text>
+          <text class='type'>小说，武侠，剧情</text>
+          <text class='author'>导演：胡歌，李尚龙</text>
+          <text class='count'>今日谈1239家剧院播放了2312次</text>
+        </view>
+      
+        <!-- 其他 -->
+        <view class='extra'>
+          <text class='score'>9.8 <text class='label'>分</text></text>
+          <button class='btn'>购票</button>
+        </view>
+      </view>
+    </view>
+
+    <view class='item'>
+      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-12.jpg"/>
+      <view class='info'>
+        <!-- 信息 -->
+        <view class='meta'>
+          <text class='name'>龙神打仗</text>
+          <text class='type'>小说，武侠，剧情</text>
+          <text class='author'>导演：胡歌，李尚龙</text>
+          <text class='count'>今日谈1239家剧院播放了2312次</text>
+        </view>
+      
+        <!-- 其他 -->
+        <view class='extra'>
+          <text class='score'>9.8 <text class='label'>分</text></text>
+          <button class='btn'>购票</button>
+        </view>
+      </view>
+    </view>
+
+    <view class='item'>
+      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-5.jpg"/>
+      <view class='info'>
+        <!-- 信息 -->
+        <view class='meta'>
+          <text class='name'>龙神打仗</text>
+          <text class='type'>小说，武侠，剧情</text>
+          <text class='author'>导演：胡歌，李尚龙</text>
+          <text class='count'>今日谈1239家剧院播放了2312次</text>
+        </view>
+      
+        <!-- 其他 -->
+        <view class='extra'>
+          <text class='score'>91236777<text class='label'>人想看</text></text>
+          <button class='btn precess'>预售</button>
+        </view>
+      </view>
+    </view>
+
+    <view class='item'>
+      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-11.jpg"/>
+      <view class='info'>
+        <!-- 信息 -->
+        <view class='meta'>
+          <text class='name'>龙神打仗</text>
+          <text class='type'>小说，武侠，剧情</text>
+          <text class='author'>导演：胡歌，李尚龙</text>
+          <text class='count'>今日谈1239家剧院播放了2312次</text>
+        </view>
+      
+        <!-- 其他 -->
+        <view class='extra'>
+          <text class='score'>9.8 <text class='label'>分</text></text>
+          <button class='btn'>购票</button>
+        </view>
+      </view>
+    </view>
+
+    <view class='item'>
+      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-3.jpg"/>
+      <view class='info'>
+        <!-- 信息 -->
+        <view class='meta'>
+          <text class='name'>龙神打仗</text>
+          <text class='type'>小说，武侠，剧情</text>
+          <text class='author'>导演：胡歌，李尚龙</text>
+          <text class='count'>今日谈1239家剧院播放了2312次</text>
+        </view>
+      
+        <!-- 其他 -->
+        <view class='extra'>
+          <text class='score'>9.8 <text class='label'>分</text></text>
+          <button class='btn'>购票</button>
+        </view>
+      </view>
+    </view>
+</view>
+
+<!-- 加载数据 -->
+<text class='loading'>加载数据...</text>

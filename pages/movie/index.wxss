@@ -1,3 +1,7 @@
+page{
+  background-color: #f6f6f6;
+}
+
 /* 头部 */
 .header{
   display: flex;
@@ -6,6 +10,7 @@
   font-size: 28rpx;
   padding: 0 24rpx;
   border-bottom: 1rpx solid #d8d8d8;
+  background-color: #fff;
 }
 
 .header .locate{
@@ -73,19 +78,28 @@
 }
  
 /* 电影列表样式布局 */
+.items {
+  background-color: #fff;
+}
+
 .items .item{
-  padding: 24rpx 0 24rpx 24rpx;
+  padding: 24rpx 0 0 24rpx;
+  position: relative;
 }
 
 .items image{
   width: 128rpx;
   height: 180rpx;
 
-  float: left;
+  /* float: left; */
+  position: absolute;
 }
 
 /* padding-left 和 margin-left 的差距 */
 .items .info{
+  display: flex;
+  justify-content: space-between;
+
   height: 208rpx;
   padding-left: 152rpx;
   border-bottom: 1rpx solid #dcdcdc;
@@ -93,9 +107,18 @@
 
 .items .info .meta text{
   display: block;
+  width: 380rpx;
   line-height: 1.7;  /* 行距 */
   font-size: 26rpx;
   color: #666;
+
+  /* 顺序不能乱，上面还要加上一个宽度 */
+  /* 内容过多的时候，出现省略号 */
+  text-overflow: ellipsis;
+  /* 超出不换行 */
+  white-space: nowrap;
+  /* 溢出内容隐藏 */
+  overflow: hidden;
 }
 
 .items .info .meta .name{
@@ -105,4 +128,56 @@
 
 .items .info .meta .count{
   color: #999;
+}
+
+.items .extra{
+  width: 200rpx;
+  height: 180rpx;
+  text-align: right;
+  position: relative;
+  margin-right: 24rpx;
+}
+
+.items .extra text{
+  height: 100rpx;
+  color: #f4b73f;
+  font-size: 24rpx;
+}
+
+.items .extra .label{
+  font-size: 18rpx;
+}
+
+.items .extra button{
+  width: 96rpx;
+  height: 56rpx;
+  background-color: #dd5046;
+  font-size: 22rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 56rpx;
+  padding: 0;
+
+  position: absolute;
+  bottom: 30rpx;
+  right: 0;
+
+}
+
+/* 去掉button多余的边框线 */
+.items .extra button::after{
+  content: "";
+  border: none;
+}
+
+.items .extra .precell{
+  background-color: #6baee6;
+}
+
+.loading{
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 30rpx 0;
+  font-size: 28rpx;
 }
