@@ -1,7 +1,7 @@
 <!-- 头部header -->
 <view class='header'>
   <!-- 位置 -->
-  <navigator url='' class='locate'>广州</navigator>
+  <navigator url='' class='locate'>{{ city }}</navigator>
 
   <!-- tab切换 -->
   <view class='tabs'>
@@ -15,97 +15,29 @@
 
 <!-- 电影列表 【热映】-->
 <view class='items' hidden='{{ tabIndex == "coming" }}'>
-    <view class='item'>
-      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-1.jpg"/>
+    <view class='item' wx:for="{{ hots.items }}" wx:key="{{ item.id }}">
+      <image src="{{ item.img }}"/>
       <view class='info'>
         <!-- 信息 -->
         <view class='meta'>
-          <text class='name'>龙神打仗</text>
-          <text class='type'>小说，武侠，剧情</text>
-          <text class='author'>导演：胡歌，李尚龙</text>
-          <text class='count'>今日谈1239家剧院播放了2312次</text>
+          <text class='name'>{{ item.nm }}</text>
+          <text class='type'>{{ item.cat }}</text>
+          <text class='author'>{{ item.desc }}</text>
+          <text class='count'>{{ item.boxInfo }}</text>
         </view>
       
         <!-- 其他 -->
         <view class='extra'>
-          <text class='score'>9.8 <text class='label'>分</text></text>
-          <button class='btn'>购票</button>
-        </view>
-      </view>
-    </view>
+          <block wx:if="{{ item.preSale == 0 }}">
+            <text class='score'>{{ item.mk }} <text class='label'>分</text></text>
+            <button class='btn' bindtap="buy">购票</button>
+          </block>
+            
+          <block wx:else>
+            <text class='score'>{{ item.wish }} <text class='label'>人想看</text></text>
+            <button class='btn precell'>预售</button>
+          </block>
 
-    <view class='item'>
-      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-12.jpg"/>
-      <view class='info'>
-        <!-- 信息 -->
-        <view class='meta'>
-          <text class='name'>龙神打仗</text>
-          <text class='type'>小说，武侠，剧情</text>
-          <text class='author'>导演：胡歌，李尚龙</text>
-          <text class='count'>今日谈1239家剧院播放了2312次</text>
-        </view>
-      
-        <!-- 其他 -->
-        <view class='extra'>
-          <text class='score'>9.8 <text class='label'>分</text></text>
-          <button class='btn'>购票</button>
-        </view>
-      </view>
-    </view>
-
-    <view class='item'>
-      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-5.jpg"/>
-      <view class='info'>
-        <!-- 信息 -->
-        <view class='meta'>
-          <text class='name'>龙神打仗</text>
-          <text class='type'>小说，武侠，剧情</text>
-          <text class='author'>导演：胡歌，李尚龙</text>
-          <text class='count'>今日谈1239家剧院播放了2312次</text>
-        </view>
-      
-        <!-- 其他 -->
-        <view class='extra'>
-          <text class='score'>91236777<text class='label'>人想看</text></text>
-          <button class='btn precell'>预售</button>
-        </view>
-      </view>
-    </view>
-
-    <view class='item'>
-      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-11.jpg"/>
-      <view class='info'>
-        <!-- 信息 -->
-        <view class='meta'>
-          <text class='name'>龙神打仗</text>
-          <text class='type'>小说，武侠，剧情</text>
-          <text class='author'>导演：胡歌，李尚龙</text>
-          <text class='count'>今日谈1239家剧院播放了2312次</text>
-        </view>
-      
-        <!-- 其他 -->
-        <view class='extra'>
-          <text class='score'>9.8 <text class='label'>分</text></text>
-          <button class='btn'>购票</button>
-        </view>
-      </view>
-    </view>
-
-    <view class='item'>
-      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-3.jpg"/>
-      <view class='info'>
-        <!-- 信息 -->
-        <view class='meta'>
-          <text class='name'>龙神打仗</text>
-          <text class='type'>小说，武侠，剧情</text>
-          <text class='author'>导演：胡歌，李尚龙</text>
-          <text class='count'>今日谈1239家剧院播放了2312次</text>
-        </view>
-      
-        <!-- 其他 -->
-        <view class='extra'>
-          <text class='score'>9.8 <text class='label'>分</text></text>
-          <button class='btn'>购票</button>
         </view>
       </view>
     </view>
@@ -261,4 +193,4 @@
 </view>
 </view>
 <!-- 加载数据 -->
-<text class='loading'>加载数据...</text>
+<text class='loading' wx:if="{{ hots.hasMore }}">加载数据...</text>
