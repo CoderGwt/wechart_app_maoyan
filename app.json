@@ -33,5 +33,11 @@
         "selectedIconPath": "icons/user_selected.png"
       }
     ]
+  },
+
+  "permission": {
+    "scope.userLocation": {
+      "desc": "小程序将确定你的位置"
+    }
   }
 }
