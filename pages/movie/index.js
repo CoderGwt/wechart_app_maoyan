@@ -79,6 +79,7 @@ Page({
 
     if(!self.data.hots.hasMore) return;
 
+    // 0 - 11
     // 请求新的数据，从第12条开始 offset
     // 12 - 23
     // 24 - 35
@@ -94,7 +95,6 @@ Page({
       success: function(info){
         // 将 新 请求来的数据追加到原来的数据后面 ,通过 concat 连接
         console.log(info);
-
 
         console.log(self.data);
         var items = self.data.hots.items.concat(info.data.data.hot);
@@ -137,8 +137,40 @@ Page({
     })
   },
 
+  
   onPullDownRefresh: function(){
     console.log("下拉...")
+
+    var self = this;
+
+    // 发送请求最新的数据
+    // 其实就是重新获取第一页的数据
+    wx.request({
+      url: 'https://wx.maoyan.com/mmdb/movie/v2/list/hot.json',
+      data: {
+          ct: self.data.city,
+          limit: 12,
+          offset: 0
+      },
+      method: 'get',
+      success: function(info){
+        console.log(info)
+
+        info.data.data.hot.forEach(function(val){
+          val.img = val.img.replace('w.h', '128.180')
+        })
+
+        // 更新原有的数据
+        self.setData({
+          hots: {
+            items: info.data.data.hot,
+            hasMore: info.data.data.paging.hasMore
+          },
+          page: 1
+        })
+      }
+    })
+
   }
 
 })
