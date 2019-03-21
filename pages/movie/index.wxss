@@ -199,6 +199,7 @@ page{
 scroll-view{
   white-space: nowrap;
   width: 750rpx;
+  height: 392rpx;
   background-color: #fff;
   margin-bottom: 20rpx;
   padding: 18rpx 24rpx;
