@@ -10,6 +10,12 @@ Page({
     // 保留外部的this
     var self = this;
 
+    // 加载数据之前，给一个提示
+    wx.showLoading({
+      title: '数据加载中...',
+    });
+
+
     // 当页面加载完成之后，获取用户的位置
     wx.getLocation({
       success: function(res) {
@@ -62,6 +68,9 @@ Page({
                       hasMore: val.data.data.paging.hasMore
                     }
                   })
+
+                  // 数据加载完成之后，取消提示
+                  wx.hideLoading();
               }
             })
           }
@@ -125,10 +134,42 @@ Page({
 
 
   switch: function(ev){
-    console.log(ev)
+    // console.log(ev)
+
+    var self = this;
+
     // 通过自定义属性 tabIndex 的值来判断用户的点击
     var tabIndex = ev.target.dataset.tabIndex;
     console.log(tabIndex);
+
+    if (tabIndex == "coming"){
+      wx.request({
+        url: 'https://wx.maoyan.com/mmdb/movie/v1/list/wish/order/coming.json',
+        data: {
+          ci: 1,
+          limit: 30,
+          offset: 0
+        },
+        method: 'get',
+        success: function(info){
+          // 成功返回数据，渲染
+          console.log(info);
+
+          // 修改图片尺寸
+          info.data.data.coming.forEach(function(item){
+            item.img = item.img.replace('w.h', '128.180')
+          })
+
+          self.setData({
+            coming: {
+              v1:{
+                items: info.data.data.coming
+              }
+            }
+          })
+        }
+      })
+    }
 
     // 通过setData设置 来实现数据的更改
     // 
@@ -156,6 +197,7 @@ Page({
       success: function(info){
         console.log(info)
 
+        // 更改图片尺寸
         info.data.data.hot.forEach(function(val){
           val.img = val.img.replace('w.h', '128.180')
         })
@@ -164,8 +206,10 @@ Page({
         self.setData({
           hots: {
             items: info.data.data.hot,
+            // 有没有下一页
             hasMore: info.data.data.paging.hasMore
           },
+          // 刷新后页面更新到第一页
           page: 1
         })
       }

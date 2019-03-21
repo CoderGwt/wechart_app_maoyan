@@ -49,48 +49,13 @@
 <!-- 如果组件的属性为 布尔类型，需要使用 {{ }}  -->
 <!-- 如果布尔值为true, 则可以省略，直接 -->
 <scroll-view scroll-x>
-  <view class='cell'>
-    <image src='https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-9.jpg'></image>
-    <text class='name'>隆胜战安康结果i撒</text>
-    <text class='wish'>7981231231238人想看</text>
-    <text class='date'>7月8日</text>
+  <view class='cell' wx:for="{{ coming.v1.items }}" wx:key="{{ item.id }}">
+    <image src='{{ item.img }}'></image>
+    <text class='name'>{{ item.nm }}</text>
+    <text class='wish'>{{ item.wish }}人想看</text>
+    <text class='date'>{{ item.comingTitle }}</text>
   </view>
 
-  <view class='cell'>
-    <image src='https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-14.jpg'></image>
-    <text class='name'>隆胜战安康结果i撒</text>
-    <text class='wish'>7981231231238人想看</text>
-    <text class='date'>7月8日</text>
-  </view>
-
-  <view class='cell'>
-    <image src='https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-13.jpg'></image>
-    <text class='name'>隆胜战安康结果i撒</text>
-    <text class='wish'>7981231231238人想看</text>
-    <text class='date'>7月8日</text>
-  </view>
-
-  <view class='cell'>
-    <image src='https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-12.jpg'></image>
-    <text class='name'>隆胜战安康结果i撒</text>
-    <text class='wish'>7981231231238人想看</text>
-    <text class='date'>7月8日</text>
-  </view>
-
-  <view class='cell'>
-    <image src='https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-2.jpg'></image>
-    <text class='name'>隆胜战安康结果i撒</text>
-    <text class='wish'>7981231231238人想看</text>
-    <text class='date'>7月8日</text>
-  </view>
-
-  <view class='cell'>
-    <image src='https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-1.jpg'></image>
-    <text class='name'>隆胜战安康结果i撒</text>
-    <text class='wish'>7981231231238人想看</text>
-    <text class='date'>7月8日</text>
-  </view>
-  
 </scroll-view>
 
 <!-- 电影列表 【待映】 -->
