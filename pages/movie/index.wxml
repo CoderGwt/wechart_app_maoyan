@@ -43,119 +43,45 @@
     </view>
 </view>
 
-<view class='wrap' hidden='{{ tabIndex == "hots" }}'>
-<!-- 近期最受关注 -->
-<text class='title'>近期最受欢迎</text>
-<!-- 如果组件的属性为 布尔类型，需要使用 {{ }}  -->
-<!-- 如果布尔值为true, 则可以省略，直接 -->
-<scroll-view scroll-x>
-  <view class='cell' wx:for="{{ coming.v1.items }}" wx:key="{{ item.id }}">
-    <image src='{{ item.img }}'></image>
-    <text class='name'>{{ item.nm }}</text>
-    <text class='wish'>{{ item.wish }}人想看</text>
-    <text class='date'>{{ item.comingTitle }}</text>
+<view class='wrap' hidden='{{ tabIndex == "hots" }}' wx:if="{{ !coming.empty }}">
+  <!-- 近期最受关注 -->
+  <text class='title'>近期最受欢迎</text>
+  <!-- 如果组件的属性为 布尔类型，需要使用 {{ }}  -->
+  <!-- 如果布尔值为true, 则可以省略，直接 -->
+  <scroll-view scroll-x>
+    <view class='cell' wx:for="{{ coming.v1.items }}" wx:key="{{ item.id }}">
+      <image src='{{ item.img }}'></image>
+      <text class='name'>{{ item.nm }}</text>
+      <text class='wish'>{{ item.wish }}人想看</text>
+      <text class='date'>{{ item.comingTitle }}</text>
+    </view>
+
+  </scroll-view>
+
+  <!-- 电影列表 【待映】 -->
+  <view class='items coming'>
+    <block  wx:for="{{ coming.v2.items }}" wx:key="{{ item.id }}">
+        <text class='title'>{{ item.comingTitle }}</text>
+        <view class='item'>
+          <image src="{{ item.img }}"/>
+          <view class='info'>
+            <!-- 信息 -->
+            <view class='meta'>
+              <text class='name'>{{ item.nm }}</text>
+              <text class='type'>{{ item.cat }}</text>
+              <text class='author'>{{ item.desc }}</text>
+              <text class='count'>{{ item.pubDesc }}</text>
+            </view>
+          
+            <!-- 其他 -->
+            <view class='extra'>
+              <text class='score'>{{ item.wish }}<text class='label'>人想看</text></text>
+              <button class='btn precell'>预售</button>
+            </view>
+          </view>
+        </view>
+    </block>
   </view>
-
-</scroll-view>
-
-<!-- 电影列表 【待映】 -->
-<view class='items coming' hidden='{{ tabIndex == "hots" }}'>
-    <text class='title'>3月18日 周二</text>
-    <view class='item'>
-      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-1.jpg"/>
-      <view class='info'>
-        <!-- 信息 -->
-        <view class='meta'>
-          <text class='name'>刺</text>
-          <text class='type'>小说，武侠，剧情</text>
-          <text class='author'>导演：胡歌，李尚龙</text>
-          <text class='count'>今日谈1239家剧院播放了2312次</text>
-        </view>
-      
-        <!-- 其他 -->
-        <view class='extra'>
-          <text class='score'>9.8 <text class='label'>分</text></text>
-          <button class='btn'>购票</button>
-        </view>
-      </view>
-    </view>
-
-    <view class='item'>
-      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-12.jpg"/>
-      <view class='info'>
-        <!-- 信息 -->
-        <view class='meta'>
-          <text class='name'>龙神打仗</text>
-          <text class='type'>小说，武侠，剧情</text>
-          <text class='author'>导演：胡歌，李尚龙</text>
-          <text class='count'>今日谈1239家剧院播放了2312次</text>
-        </view>
-      
-        <!-- 其他 -->
-        <view class='extra'>
-          <text class='score'>9.8 <text class='label'>分</text></text>
-          <button class='btn'>购票</button>
-        </view>
-      </view>
-    </view>
-
-    <view class='item'>
-      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-5.jpg"/>
-      <view class='info'>
-        <!-- 信息 -->
-        <view class='meta'>
-          <text class='name'>龙神打仗</text>
-          <text class='type'>小说，武侠，剧情</text>
-          <text class='author'>导演：胡歌，李尚龙</text>
-          <text class='count'>今日谈1239家剧院播放了2312次</text>
-        </view>
-      
-        <!-- 其他 -->
-        <view class='extra'>
-          <text class='score'>91236777<text class='label'>人想看</text></text>
-          <button class='btn precess'>预售</button>
-        </view>
-      </view>
-    </view>
-
-    <view class='item'>
-      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-11.jpg"/>
-      <view class='info'>
-        <!-- 信息 -->
-        <view class='meta'>
-          <text class='name'>龙神打仗</text>
-          <text class='type'>小说，武侠，剧情</text>
-          <text class='author'>导演：胡歌，李尚龙</text>
-          <text class='count'>今日谈1239家剧院播放了2312次</text>
-        </view>
-      
-        <!-- 其他 -->
-        <view class='extra'>
-          <text class='score'>9.8 <text class='label'>分</text></text>
-          <button class='btn'>购票</button>
-        </view>
-      </view>
-    </view>
-
-    <view class='item'>
-      <image src="https://lg-awf6ud7o-1257084981.cos.ap-shanghai.myqcloud.com/movie-3.jpg"/>
-      <view class='info'>
-        <!-- 信息 -->
-        <view class='meta'>
-          <text class='name'>龙神打仗</text>
-          <text class='type'>小说，武侠，剧情</text>
-          <text class='author'>导演：胡歌，李尚龙</text>
-          <text class='count'>今日谈1239家剧院播放了2312次</text>
-        </view>
-      
-        <!-- 其他 -->
-        <view class='extra'>
-          <text class='score'>9.8 <text class='label'>分</text></text>
-          <button class='btn'>购票</button>
-        </view>
-      </view>
-    </view>
-</view>
 </view>
 <!-- 加载数据 -->
 <text class='loading' wx:if="{{ hots.hasMore }}">加载数据...</text>

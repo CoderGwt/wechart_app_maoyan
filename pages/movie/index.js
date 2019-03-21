@@ -2,7 +2,10 @@ Page({
   data: {
     tabIndex: 'hots',
     limit: 12,
-    page: 1
+    page: 1,
+    coming: {
+      empty: true
+    }
   },
 
   // 生命周期函数
@@ -65,7 +68,8 @@ Page({
                     hots: {
                       items: val.data.data.hot,
                       // 通过hasMore判断是否加载跟多的数据
-                      hasMore: val.data.data.paging.hasMore
+                      hasMore: val.data.data.paging.hasMore,
+                      empty: false
                     }
                   })
 
@@ -142,8 +146,32 @@ Page({
     var tabIndex = ev.target.dataset.tabIndex;
     console.log(tabIndex);
 
-    if (tabIndex == "coming"){
+    // 通过setData设置 来实现数据的更改
+    // 
+    self.setData({
+      tabIndex: tabIndex
+    })
+
+    console.log(self.data[tabIndex].empty)
+
+    // 当点击tab时，检测当前tab对应的数据是否存在，
+    // 如果已存在，则不必发送请求，相反，如果不存在，再去发送请求
+    // 再前面请求数据成功的时候，给一个标签，记录一下， empty 为false
+    var empty = self.data[tabIndex].empty
+    // 如果已经有数据，则不必重新请求
+    if(!empty) return;
+    if(tabIndex == 'hots'){
+      // 请求热门电影
+    }
+
+    if (tabIndex == "coming") {
+      // 请求待映电影
+      wx.showLoading({
+        title: '数据加载中...'
+      });
+
       wx.request({
+        // 请求最受欢迎
         url: 'https://wx.maoyan.com/mmdb/movie/v1/list/wish/order/coming.json',
         data: {
           ci: 1,
@@ -151,31 +179,62 @@ Page({
           offset: 0
         },
         method: 'get',
-        success: function(info){
+        success: function (v1) {
           // 成功返回数据，渲染
-          console.log(info);
+          // console.log(info);
 
           // 修改图片尺寸
-          info.data.data.coming.forEach(function(item){
-            item.img = item.img.replace('w.h', '128.180')
-          })
+          v1.data.data.coming.forEach(function (item) {
+            item.img = item.img.replace('w.h', '170.230');
 
-          self.setData({
-            coming: {
-              v1:{
-                items: info.data.data.coming
-              }
+            // 3月21日 周四  -》 3月21日  截取
+            item.comingTitle = item.comingTitle.slice(0, -3)
+          });
+
+          // 请求待映列表
+          wx.request({
+            url: 'https://wx.maoyan.com/mmdb/movie/v2/list/rt/order/coming.json',
+            data: {
+              ci: 1,
+              limit: 10
+            },
+            method: 'get',
+            success: function (v2) {
+                console.log(v2);
+
+              // 修改图片尺寸
+              var title = "";
+              v2.data.data.coming.forEach(function (item) {
+                item.img = item.img.replace('w.h', '128.180')
+
+                if(item.comingTitle == title){
+                  item.comingTitle = ""
+                }else{
+                  title = item.comingTitle
+                }
+
+              });
+
+              // 添加数据
+              self.setData({
+                coming: {
+                  v1: {
+                    items: v1.data.data.coming
+                  },
+                  v2: {
+                    items: v2.data.data.coming
+                  },
+                  empty: false
+                }
+              });
+
+              // 取消加载框
+              wx.hideLoading();
             }
           })
         }
       })
     }
-
-    // 通过setData设置 来实现数据的更改
-    // 
-    this.setData({
-      tabIndex: tabIndex
-    })
   },
 
   
